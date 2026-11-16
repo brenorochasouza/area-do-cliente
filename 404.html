@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="robots" content="noindex, nofollow">
+<title>Área do cliente · Souza Engenharia</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="https://portal.souzaengenharia.com/img/favicon.png">
+<link rel="apple-touch-icon" href="https://portal.souzaengenharia.com/img/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Souza Engenharia">
+<script>
+/* A Área do cliente agora fica em portal.souzaengenharia.com.
+   Se o portal já estiver no ar, leva para lá (com o mesmo endereço depois do #);
+   enquanto não estiver, abre a entrada antiga, como antes. */
+(function () {
+  var PORTAL = 'https://portal.souzaengenharia.com/';
+  var ANTIGO = 'https://breno.souzaengenharia.com/clientes/entrada.js';
+  var feito = false;
+  function antigo() {
+    if (feito) return; feito = true;
+    var s = document.createElement('script'); s.src = ANTIGO; document.head.appendChild(s);
+  }
+  function ir() { if (feito) return; feito = true; location.replace(PORTAL + location.hash); }
+  setTimeout(antigo, 6000);
+  // o ícone do portal só carrega se o portal estiver mesmo no ar (não basta o endereço existir)
+  var teste = new Image();
+  teste.onload = ir;
+  teste.onerror = antigo;
+  teste.src = PORTAL + 'img/favicon.png?c=' + Date.now();
+})();
+</script>
+</head>
+<body class="rdo-entrada">
+<div id="app"><div style="min-height:100vh;display:grid;place-items:center"><img src="https://portal.souzaengenharia.com/img/logo.png" onerror="this.onerror=null;this.src='https://breno.souzaengenharia.com/img/logo.png'" alt="Souza Engenharia" style="width:200px;opacity:.9"></div></div>
+<div id="print-root"></div>
+<noscript>A Área do cliente precisa de JavaScript habilitado.</noscript>
+</body>
+</html>
